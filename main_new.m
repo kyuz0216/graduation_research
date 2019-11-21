@@ -398,6 +398,15 @@ fprintf(fid,'åÎç∑(c)\r\n');
 fprintf(fid,'%g\n',er5);
 fclose(fid);
 
+figure(9);
+semilogy(dqds_c_times,er5zero,'bo','MarkerSize',13,'LineWidth',3,'MarkerFaceColor','w');
+grid on;
+axis([0 700 1e-17 1e-13]);
+xlabel('îΩïúâÒêî');
+ylabel('Relative errors');
+legend('dqds( C )');
+
+
 movefile((folder_name_fig),(folder_name));
 movefile((file_name),(folder_name));
 movefile((file_name1),(folder_name));
@@ -407,3 +416,5 @@ movefile((file_name4),(folder_name));
 movefile((file_name5),(folder_name));
 movefile((file_name6),(folder_name));
 movefile((file_name7),(folder_name));
+
+
