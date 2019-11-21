@@ -10,7 +10,7 @@ graduation research B4
   ＊この際、manin_new.m以外に追加のファイルがあれば、それもresearchフォルダに入れる。  
     その場合、その有無をPull Requestの文のところに書いておく。  
 4.git add→git commit ~　→git pushでgithubに反映する  
-5.githubにブラウザでアクセスし、Pull Requestを出す。  対面ではない時は、詳しくPull Requestの概要欄に詳細を記入する
+5.githubにブラウザでアクセスし、Pull Requestを出す。  対面ではない時は、詳しくPull Requestの概要欄に詳細を記入する  
 6.相手にPull Requestの承認(マージ)をしてもらう。(自分でもボタンは押せるが、相手にしてもらったほうが良い。)  
 
 ## 相手の変更を受け取りたい時
