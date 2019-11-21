@@ -86,13 +86,16 @@ command='./dqds_double';
 disp(sprintf('%s',command));
 [status,cmdout]=system(command);
 dqds_c_r=dvec_bin_load('out_c_dqds.bin');
+% 反復回数の読み込み
+dqds_c_times_in=ivec_load('repeat_times.txt');
+%ソート
+[dqds_c,I]=sort(dqds_c_in);
+dqds_c_times=dqds_c_times_in(I);
 % fileID=fopen('out_c_dqds.bin','r');status = fseek(fileID,0,'bof');
 % type_dqds_c=fread(fileID,3,'*char','ieee-le');type_dqds_c=type_dqds_c';
 % n2=fread(fileID,1,'*int32','ieee-le');
-% % 出力結果の固有値を読み込みゼト
+% % 出力結果の固有値を読み込みソート
 % dqds_c_r=fread(fileID,[n2 1],'double');
-dqds_c_r=dqds_c_r.'; 
-dqds_c=sort(dqds_c_r);
 % time_dqds_c=fread(fileID,1,'double','ieee-le');
 % fclose(fileID);
 %disp(sprintf('Computing time=%g [s]',time_dqds_c));
@@ -122,16 +125,22 @@ disp(sprintf('Computing time=%g [s]',time_matlab_dqds));
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 disp('(4)多倍長精度演算により真値の代用物の計算');
-% 使用桁数 prec [bits]
-set_default_prec(512);
-%　多倍長精度演算で固有値計算
-tic;
-lambda=double(eig(multi(A)));
-time_multi_eig=toc;
-disp(sprintf('Computing time=%g [s]',time_multi_eig));
-% 倍精度にキャストし，ソートしてから，また多倍長にキャスト
-lambda=sort(double(lambda));
-lambda=double(lambda);
+command='./dqds_rmulti -prec 512 ';
+[staus,cmdout]=system(command);
+disp(cmdout);
+lambda=dvec_bin_load('out_c_multi.bin');
+lambda=sort(lambda);
+
+% % 使用桁数 prec [bits]
+% set_default_prec(512);
+% %　多倍長精度演算で固有値計算
+% tic;
+% lambda=double(eig(multi(A)));
+% time_multi_eig=toc;
+% disp(sprintf('Computing time=%g [s]',time_multi_eig));
+% % 倍精度にキャストし，ソートしてから，また多倍長にキャスト
+% lambda=sort(double(lambda));
+% lambda=double(lambda);
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % (5)誤差評価
