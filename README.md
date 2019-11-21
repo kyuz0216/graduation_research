@@ -1,5 +1,6 @@
 # graduation_research
-graduation research B4 
+graduation research B4  
+使うかわかんけど
 
 # 全体の流れ
 ## ファイルを変更した時
