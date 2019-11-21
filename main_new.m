@@ -406,6 +406,8 @@ xlabel('îΩïúâÒêî');
 ylabel('Relative errors');
 legend('dqds( C )');
 
+% Ç†Ç†Ç†Ç†Ç†Ç†Ç†Ç†Ç†Ç†Ç†Ç†Ç†Ç†Ç†Ç†Ç†Ç†Ç†Ç†Ç†Ç†Ç†Ç†Ç†Ç†Ç†aaaaaaa
+
 
 movefile((folder_name_fig),(folder_name));
 movefile((file_name),(folder_name));
