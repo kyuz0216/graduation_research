@@ -81,21 +81,17 @@ disp(sprintf('Computing time=%g [s]',time_dpteqr));
 % C dqdsの結果を読み込む       
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-% C版のdqdsの実行．外部コマンド./dqds_doubleを実行
+disp('(2.5)C版のdqdsの実行');
+
 command='./dqds_double';
 disp(sprintf('%s',command));
-[status,cmdout]=system(command);
-dqds_c_r=dvec_bin_load('out_c_dqds.bin');
-% fileID=fopen('out_c_dqds.bin','r');status = fseek(fileID,0,'bof');
-% type_dqds_c=fread(fileID,3,'*char','ieee-le');type_dqds_c=type_dqds_c';
-% n2=fread(fileID,1,'*int32','ieee-le');
-% % 出力結果の固有値を読み込みゼト
-% dqds_c_r=fread(fileID,[n2 1],'double');
-dqds_c_r=dqds_c_r.'; 
-dqds_c=sort(dqds_c_r);
-% time_dqds_c=fread(fileID,1,'double','ieee-le');
-% fclose(fileID);
-%disp(sprintf('Computing time=%g [s]',time_dqds_c));
+[status,cmdout]=system(command);    
+dqds_c_in=dvec_bin_load('out_c_dqds.bin');
+% 反復回数の読み込み
+dqds_c_times_in=ivec_load('repeat_times.txt');
+%ソート
+[dqds_c,I]=sort(dqds_c_in);
+dqds_c_times=dqds_c_times_in(I);
 
 
 
@@ -200,15 +196,27 @@ disp(sprintf('CとFORTRANの誤差が同じ数: %d 個',numel(er_zero_eq)));
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% (5)平均と分散
+% (5*)平均と分散
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-disp('(6)分散と平均');
+disp('(5*)分散と平均');
 
 % 異なる誤差の配列の平均と分散
 var3 = var(er3zero_not_eq);
 var4 = var(er4zero_not_eq);
 disp(sprintf('MATLABの分散: %.1e',var3));
 disp(sprintf('FORTRANの分散: %.1e',var4));
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% (5**)得点計算
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% -14.5を真ん中としてそれより小さいならプラス、大きいならマイナスとして計算
+disp('(5**)得点を表示');
+for i=1:n2
+    p3(i) = -14.5-log10(er3zero_not_eq(i));
+    p4(i) = -14.5-log10(er4zero_not_eq(i));
+end
+disp(sprintf('MATLABの得点: %g点',sum(p3)));
+disp(sprintf('FORTRANの得点: %g点',sum(p4)));
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % (6)グラフ
@@ -297,7 +305,17 @@ saveas(gcf,'not_eq_FORTRAN_er.png')
 movefile('not_eq_FORTRAN_er.fig',(folder_name_fig));
 movefile('not_eq_FORTRAN_er.png',(folder_name_fig));
 
-
+figure(9);
+semilogy(dqds_c_times,er5zero,'bo','MarkerSize',13,'LineWidth',3,'MarkerFaceColor','w');
+grid on;
+axis([0 700 1e-17 1e-13]);
+xlabel('反復回数');
+ylabel('Relative errors');
+legend('dqds( C )');
+saveas(gcf,'loop_er.fig')
+saveas(gcf,'loop_er.png')
+movefile('loop_er.fig',(folder_name_fig));
+movefile('loop_er.png',(folder_name_fig));
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -351,6 +369,12 @@ fprintf(fid,'(6)誤差が異なる部分の分散\r\n');
 fprintf(fid,'MATLABの分散: %.1e\r\n',var3);
 fprintf(fid,'FORTRANの分散: %.1e\r\n',var4);
 fprintf(fid,'=============================================\r\n');
+% 得点
+fprintf(fid,'(7)得点\r\n');
+fprintf(fid,'MATLABの得点: %g点\r\n',sum(p3));
+fprintf(fid,'FORTRANの得点: %g点\r\n',sum(p4));
+fprintf(fid,'二つの得点差: %g点\r\n',abs(sum(p3)-sum(p4)));
+fprintf(fid,'=============================================\r\n');
 
 fclose(fid);
 
@@ -398,17 +422,6 @@ fprintf(fid,'誤差(c)\r\n');
 fprintf(fid,'%g\n',er5);
 fclose(fid);
 
-figure(9);
-semilogy(dqds_c_times,er5zero,'bo','MarkerSize',13,'LineWidth',3,'MarkerFaceColor','w');
-grid on;
-axis([0 700 1e-17 1e-13]);
-xlabel('反復回数');
-ylabel('Relative errors');
-legend('dqds( C )');
-
-% あああああああああああああああああああああああああああaaaaaaa
-
-
 movefile((folder_name_fig),(folder_name));
 movefile((file_name),(folder_name));
 movefile((file_name1),(folder_name));
@@ -418,5 +431,3 @@ movefile((file_name4),(folder_name));
 movefile((file_name5),(folder_name));
 movefile((file_name6),(folder_name));
 movefile((file_name7),(folder_name));
-
-
