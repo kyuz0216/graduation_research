@@ -1,19 +1,19 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% ƒƒCƒ“ƒ‹[ƒ`ƒ“
-% (1)ƒeƒXƒgs—ñì¬
-% (2)FORTRAN”Å‚Ìdqds‚ÌÀs
-% (3)MATLAB”Å‚Ìdqds‚ÌÀs
-% (4)‘½”{’·¸“x‰‰Z‚É‚æ‚è^’l‚Ì‘ã—p•¨‚ÌŒvZ
-% (5)Œë·•]‰¿
+% ãƒ¡ã‚¤ãƒ³ãƒ«ãƒ¼ãƒãƒ³
+% (1)ãƒ†ã‚¹ãƒˆè¡Œåˆ—ä½œæˆ
+% (2)FORTRANç‰ˆã®dqdsã®å®Ÿè¡Œ
+% (3)MATLABç‰ˆã®dqdsã®å®Ÿè¡Œ
+% (4)å¤šå€é•·ç²¾åº¦æ¼”ç®—ã«ã‚ˆã‚ŠçœŸå€¤ã®ä»£ç”¨ç‰©ã®è¨ˆç®—
+% (5)èª¤å·®è©•ä¾¡
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%@‚±‚ÌƒtƒHƒ‹ƒ_“à‚É•K—v‚Èƒtƒ@ƒCƒ‹
+%ã€€ã“ã®ãƒ•ã‚©ãƒ«ãƒ€å†…ã«å¿…è¦ãªãƒ•ã‚¡ã‚¤ãƒ«
 % main.m 
 % dqds_2_1_6_0_0_test.m 
 % test_dpteqr.f90 
 % dpteqr_O3.out 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% FORTRAN‚ÅƒRƒ“ƒpƒCƒ‹‚µ‚ÄCtest_dpteqr.f90‚©‚çdpteqr_O3.out‚ğ¶¬
-% ˆÈ‰º‚ÌƒRƒ}ƒ“ƒh‚ğƒ^[ƒ~ƒiƒ‹‚ÅÀsF
+% FORTRANã§ã‚³ãƒ³ãƒ‘ã‚¤ãƒ«ã—ã¦ï¼Œtest_dpteqr.f90ã‹ã‚‰dpteqr_O3.outã‚’ç”Ÿæˆ
+% ä»¥ä¸‹ã®ã‚³ãƒãƒ³ãƒ‰ã‚’ã‚¿ãƒ¼ãƒŸãƒŠãƒ«ã§å®Ÿè¡Œï¼š
 % gfortran -Wall -O3 test_dpteqr.f90 -o dpteqr /usr/local/lib/liblapack.a /usr/local/lib/librefblas.a 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -21,30 +21,30 @@ clear all;
 close all;
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% (1)ƒeƒXƒgs—ñì¬
-% y“ü—Ís—ñzA2
-%  matrix14‚ÌƒeƒXƒgs—ñ
+% (1)ãƒ†ã‚¹ãƒˆè¡Œåˆ—ä½œæˆ
+% ã€å…¥åŠ›è¡Œåˆ—ã€‘A2
+%  matrix14ã®ãƒ†ã‚¹ãƒˆè¡Œåˆ—
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-disp('(1)ƒeƒXƒgs—ñì¬');
+disp('(1)ãƒ†ã‚¹ãƒˆè¡Œåˆ—ä½œæˆ');
 rand('seed',1);
-% s—ñ‚ÌƒTƒCƒY‚ğw’è‚·‚é
-prompt = 's—ñ‚ÌƒTƒCƒY‚ğw’è‚µ‚Ä‚­‚¾‚³‚¢ ';
+% è¡Œåˆ—ã®ã‚µã‚¤ã‚ºã‚’æŒ‡å®šã™ã‚‹
+prompt = 'è¡Œåˆ—ã®ã‚µã‚¤ã‚ºã‚’æŒ‡å®šã—ã¦ãã ã•ã„ ';
 x = input(prompt)
 n=int32(x);
-% ƒeƒXƒgs—ñ‚Ì”Ô†‚ğw’è‚·‚é
-prompt = 'ƒeƒXƒgs—ñ‚Ì”Ô†‚ğ1~20‚Åw’è‚µ‚Ä‚­‚¾‚³‚¢@';
+% ãƒ†ã‚¹ãƒˆè¡Œåˆ—ã®ç•ªå·ã‚’æŒ‡å®šã™ã‚‹
+prompt = 'ãƒ†ã‚¹ãƒˆè¡Œåˆ—ã®ç•ªå·ã‚’1~20ã§æŒ‡å®šã—ã¦ãã ã•ã„ã€€';
 y = input(prompt)
 
-% test_matirix.m‚ÌŠÖ”‚ğŒÄ‚Ño‚·
+% test_matirix.mã®é–¢æ•°ã‚’å‘¼ã³å‡ºã™
 [A,a,b]=test_matrix(n,y);
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% (2)FORTRAN”Å‚Ìdqds‚ÌÀs
-% yo—ÍŒ‹‰ÊzŒÅ—L’lFeig_dpteqrCŒvZŠÔFtime_dpteqr
+% (2)FORTRANç‰ˆã®dqdsã®å®Ÿè¡Œ
+% ã€å‡ºåŠ›çµæœã€‘å›ºæœ‰å€¤ï¼šeig_dpteqrï¼Œè¨ˆç®—æ™‚é–“ï¼štime_dpteqr
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-disp('(2)FORTRAN”Å‚Ìdqds‚ÌÀs');
-% s—ñA2‚ğƒoƒCƒiƒŠŒ`®‚Ìƒtƒ@ƒCƒ‹(ƒtƒ@ƒCƒ‹–¼Fin.bin)‚Æ‚µ‚Ä•Û‘¶
+disp('(2)FORTRANç‰ˆã®dqdsã®å®Ÿè¡Œ');
+% è¡Œåˆ—A2ã‚’ãƒã‚¤ãƒŠãƒªå½¢å¼ã®ãƒ•ã‚¡ã‚¤ãƒ«(ãƒ•ã‚¡ã‚¤ãƒ«åï¼šin.bin)ã¨ã—ã¦ä¿å­˜
 dmat_bin_save(A,'in.bin');
 dvec_bin_save(b,'in_diag1.bin');
 dvec_bin_save(a,'in_diag2.bin');
@@ -56,45 +56,54 @@ dvec_bin_save(a,'in_diag2.bin');
 % fclose(fileID);
 
 
-% FORTRAN”Å‚Ìdqds‚ÌÀsDŠO•”ƒRƒ}ƒ“ƒhdpteqr‚ğÀsiLAPACKƒ‰ƒCƒuƒ‰ƒŠ‚Ìdpteqrƒ‹[ƒ`ƒ“j
+% FORTRANç‰ˆã®dqdsã®å®Ÿè¡Œï¼å¤–éƒ¨ã‚³ãƒãƒ³ãƒ‰dpteqrã‚’å®Ÿè¡Œï¼ˆLAPACKãƒ©ã‚¤ãƒ–ãƒ©ãƒªã®dpteqrãƒ«ãƒ¼ãƒãƒ³ï¼‰
 command='./dpteqr';
 disp(sprintf('%s',command));
 [status,cmdout]=system(command);
 disp(sprintf('statud=%d',status));
 disp(sprintf('%s',cmdout));
 
-% ƒoƒCƒiƒŠŒ`®‚Ìo—ÍŒ‹‰Ê‚Ìƒtƒ@ƒCƒ‹(ƒtƒBƒCƒ‹–¼Fout_dpteqr.binj‚ğ“Ç‚İ‚Ş
+% ãƒã‚¤ãƒŠãƒªå½¢å¼ã®å‡ºåŠ›çµæœã®ãƒ•ã‚¡ã‚¤ãƒ«(ãƒ•ã‚£ã‚¤ãƒ«åï¼šout_dpteqr.binï¼‰ã‚’èª­ã¿è¾¼ã‚€
 fileID=fopen('out_dpteqr.bin','r');status = fseek(fileID,0,'bof');
 type_dpteqr=fread(fileID,4,'*char','ieee-le');type_dpteqr=type_dpteqr';
 n=fread(fileID,1,'*int32','ieee-le');A_dpteqr= fread(fileID,[n n],'double','ieee-le');
-%n1‚É•ÏX‚·‚éª
+%n1ã«å¤‰æ›´ã™ã‚‹â†‘
 routine_dpteqr=fread(fileID,15,'*char','ieee-le');routine_dpteqr=routine_dpteqr';
-% ŒvZŠÔ‚Ì“Ç‚İ‚İ
+% è¨ˆç®—æ™‚é–“ã®èª­ã¿è¾¼ã¿
 time_dpteqr=fread(fileID,1,'double','ieee-le');
-% o—ÍŒ‹‰Ê‚ÌŒÅ—L’l‚ğ“Ç‚İ‚İƒ\[ƒg
+% å‡ºåŠ›çµæœã®å›ºæœ‰å€¤ã‚’èª­ã¿è¾¼ã¿ã‚½ãƒ¼ãƒˆ
 eig_dpteqr_r=fread(fileID,[n 1],'double','ieee-le');
 eig_dpteqr=sort(eig_dpteqr_r);
 fclose(fileID);
 disp(sprintf('Computing time=%g [s]',time_dpteqr));
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
-% C dqds‚ÌŒ‹‰Ê‚ğ“Ç‚İ‚Ş       
+% C dqdsã®çµæœã‚’èª­ã¿è¾¼ã‚€       
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-% C”Å‚Ìdqds‚ÌÀsDŠO•”ƒRƒ}ƒ“ƒh./dqds_double‚ğÀs
+disp('(2.5)Cç‰ˆã®dqdsã®å®Ÿè¡Œ');
+
 command='./dqds_double';
 disp(sprintf('%s',command));
+
+[status,cmdout]=system(command);    
+dqds_c_in=dvec_bin_load('out_c_dqds.bin');
+=======
 [status,cmdout]=system(command);
 dqds_c_r=dvec_bin_load('out_c_dqds.bin');
-% ”½•œ‰ñ”‚Ì“Ç‚İ‚İ
+
+
+% åå¾©å›æ•°ã®èª­ã¿è¾¼ã¿
 dqds_c_times_in=ivec_load('repeat_times.txt');
-%ƒ\[ƒg
+%ã‚½ãƒ¼ãƒˆ
 [dqds_c,I]=sort(dqds_c_in);
 dqds_c_times=dqds_c_times_in(I);
+
+=======
 % fileID=fopen('out_c_dqds.bin','r');status = fseek(fileID,0,'bof');
 % type_dqds_c=fread(fileID,3,'*char','ieee-le');type_dqds_c=type_dqds_c';
 % n2=fread(fileID,1,'*int32','ieee-le');
-% % o—ÍŒ‹‰Ê‚ÌŒÅ—L’l‚ğ“Ç‚İ‚İƒ\[ƒg
+% % å‡ºåŠ›çµæœã®å›ºæœ‰å€¤ã‚’èª­ã¿è¾¼ã¿ã‚½ãƒ¼ãƒˆ
 % dqds_c_r=fread(fileID,[n2 1],'double');
 % time_dqds_c=fread(fileID,1,'double','ieee-le');
 % fclose(fileID);
@@ -102,56 +111,57 @@ dqds_c_times=dqds_c_times_in(I);
 
 
 
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% (3)MATLAB”Å‚Ìdqds‚ÌÀs
-% yo—ÍŒ‹‰ÊzŒÅ—L’lFlambda3CŒvZŠÔFtime_matlab_dqds
+% (3)MATLABç‰ˆã®dqdsã®å®Ÿè¡Œ
+% ã€å‡ºåŠ›çµæœã€‘å›ºæœ‰å€¤ï¼šlambda3ï¼Œè¨ˆç®—æ™‚é–“ï¼štime_matlab_dqds
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-disp('(3)MATLAB”Å‚Ìdqds‚ÌÀs');
+disp('(3)MATLABç‰ˆã®dqdsã®å®Ÿè¡Œ');
 tic;t=toc;
-% dqdsÀs
+% dqdså®Ÿè¡Œ
 tic;
 debug=1;
 [lambda3,nn3]=dqds_2_1_6_0_0_test(n,a,b,debug);
 time_matlab_dqds=toc;
-% ŒvZŠÔ
+% è¨ˆç®—æ™‚é–“
 disp(sprintf('Computing time=%g [s]',time_matlab_dqds));
-% dqds‚Å‚ÌŒÅ—L’l‚ğƒ\[ƒg
+% dqdsã§ã®å›ºæœ‰å€¤ã‚’ã‚½ãƒ¼ãƒˆ
 [lambda3,I3]=sort(lambda3);
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% (4)‘½”{’·¸“x‰‰Z‚É‚æ‚è^’l‚Ì‘ã—p•¨‚ÌŒvZ
-% yo—ÍŒ‹‰ÊzŒÅ—L’lFlambdaCŒvZŠÔFtime_multi_eig
+% (4)å¤šå€é•·ç²¾åº¦æ¼”ç®—ã«ã‚ˆã‚ŠçœŸå€¤ã®ä»£ç”¨ç‰©ã®è¨ˆç®—
+% ã€å‡ºåŠ›çµæœã€‘å›ºæœ‰å€¤ï¼šlambdaï¼Œè¨ˆç®—æ™‚é–“ï¼štime_multi_eig
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-disp('(4)‘½”{’·¸“x‰‰Z‚É‚æ‚è^’l‚Ì‘ã—p•¨‚ÌŒvZ');
+disp('(4)å¤šå€é•·ç²¾åº¦æ¼”ç®—ã«ã‚ˆã‚ŠçœŸå€¤ã®ä»£ç”¨ç‰©ã®è¨ˆç®—');
 command='./dqds_rmulti -prec 512 ';
 [staus,cmdout]=system(command);
 disp(cmdout);
 lambda=dvec_bin_load('out_c_multi.bin');
 lambda=sort(lambda);
 
-% % g—pŒ…” prec [bits]
+% % ä½¿ç”¨æ¡æ•° prec [bits]
 % set_default_prec(512);
-% %@‘½”{’·¸“x‰‰Z‚ÅŒÅ—L’lŒvZ
+% %ã€€å¤šå€é•·ç²¾åº¦æ¼”ç®—ã§å›ºæœ‰å€¤è¨ˆç®—
 % tic;
 % lambda=double(eig(multi(A)));
 % time_multi_eig=toc;
 % disp(sprintf('Computing time=%g [s]',time_multi_eig));
-% % ”{¸“x‚ÉƒLƒƒƒXƒg‚µCƒ\[ƒg‚µ‚Ä‚©‚çC‚Ü‚½‘½”{’·‚ÉƒLƒƒƒXƒg
+% % å€ç²¾åº¦ã«ã‚­ãƒ£ã‚¹ãƒˆã—ï¼Œã‚½ãƒ¼ãƒˆã—ã¦ã‹ã‚‰ï¼Œã¾ãŸå¤šå€é•·ã«ã‚­ãƒ£ã‚¹ãƒˆ
 % lambda=sort(double(lambda));
 % lambda=double(lambda);
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% (5)Œë·•]‰¿
+% (5)èª¤å·®è©•ä¾¡
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-disp('(5)Œë·•]‰¿');
+disp('(5)èª¤å·®è©•ä¾¡');
 erzero=ones(n,1).*2^(-53);
 
 
-% MATLAB”Å‚Ìdqds‚ÌŒë·
-% MATLAB‚ÌŒë·
+% MATLABç‰ˆã®dqdsã®èª¤å·®
+% MATLABã®èª¤å·®
 disp(sprintf('=== dqds (MATLAB)'));
 er3=double((abs((lambda3-lambda)./lambda)));
 er3zero=max(er3,erzero);
@@ -160,7 +170,7 @@ er3_ave=10^(sum(log10(er3zero))/double(n));
 disp(sprintf('Max: %.1e',er3_max));
 disp(sprintf('Ave: %.1e',er3_ave));
 
-% % FORTRAN”Å‚Ìdqds‚ÌŒë·
+% % FORTRANç‰ˆã®dqdsã®èª¤å·®
 disp(sprintf('=== dpteqr (FORTRAN)'));
 lambda4=eig_dpteqr;
 er4=double(abs((lambda4-lambda)./lambda));
@@ -170,7 +180,7 @@ er4_ave=10^(sum(log10(er4zero))/double(n));
 disp(sprintf('Max: %.1e',er4_max));
 disp(sprintf('Ave: %.1e',er4_ave));
 
-% C”Å‚Ìdqds‚ÌŒë·
+% Cç‰ˆã®dqdsã®èª¤å·®
 disp(sprintf('=== dqds ( C )'));
 lambda5=dqds_c;
 er5=double(abs((lambda5-lambda)./lambda));
@@ -180,52 +190,64 @@ er5_ave=10^(sum(log10(er5zero))/double(n));
 disp(sprintf('Max: %.1e',er5_max));
 disp(sprintf('Ave: %.1e',er5_ave));
 
-disp('(5*)Œë·‚ª“¯‚¶•”•ª‚Æˆá‚¤•”•ª‚ğŠi”[');
+disp('(5*)èª¤å·®ãŒåŒã˜éƒ¨åˆ†ã¨é•ã†éƒ¨åˆ†ã‚’æ ¼ç´');
 
-% ˆÙ‚È‚éŒë·‚Ì”z—ñ‚ğì¬
-% MATLAB‚ÆFORTRAN
-% Œë·‚ª“¯‚¶•”•ª‚ğ‚P‚Åˆá‚¤•”•ª‚ğ‚O‚Åo—Í
+% ç•°ãªã‚‹èª¤å·®ã®é…åˆ—ã‚’ä½œæˆ
+% MATLABã¨FORTRAN
+% èª¤å·®ãŒåŒã˜éƒ¨åˆ†ã‚’ï¼‘ã§é•ã†éƒ¨åˆ†ã‚’ï¼ã§å‡ºåŠ›
 eq = abs(er3zero-er4zero)== 0;
-% Œë·‚ªˆá‚¤•”•ª‚Ì‚İ‚ğo—Í
+% èª¤å·®ãŒé•ã†éƒ¨åˆ†ã®ã¿ã‚’å‡ºåŠ›
 er3zero_not_eq = er3zero(~eq);
 er4zero_not_eq = er4zero(~eq);
 n1 = numel(er3zero_not_eq);
-disp(sprintf('MATLAB‚ÆFORTRAN‚ÌŒë·‚ªˆÙ‚È‚é”: %d ŒÂ',n1));
-% Œë·‚ª“¯‚¶•”•ª‚Ì”z—ñ‚Ì‚İo—Í
+disp(sprintf('MATLABã¨FORTRANã®èª¤å·®ãŒç•°ãªã‚‹æ•°: %d å€‹',n1));
+% èª¤å·®ãŒåŒã˜éƒ¨åˆ†ã®é…åˆ—ã®ã¿å‡ºåŠ›
 er_zero_eq = er3zero(eq);
-disp(sprintf('MATLAB‚ÆFORTRAN‚ÌŒë·‚ª“¯‚¶”: %d ŒÂ',numel(er_zero_eq)));
+disp(sprintf('MATLABã¨FORTRANã®èª¤å·®ãŒåŒã˜æ•°: %d å€‹',numel(er_zero_eq)));
 
-% C‚ÆFORTRAN
-% Œë·‚ª“¯‚¶•”•ª‚ğ‚P‚Åˆá‚¤•”•ª‚ğ‚O‚Åo—Í
+% Cã¨FORTRAN
+% èª¤å·®ãŒåŒã˜éƒ¨åˆ†ã‚’ï¼‘ã§é•ã†éƒ¨åˆ†ã‚’ï¼ã§å‡ºåŠ›
 eq_1 = abs(er5zero-er4zero)== 0;
-% Œë·‚ªˆá‚¤•”•ª‚Ì‚İ‚ğo—Í
+% èª¤å·®ãŒé•ã†éƒ¨åˆ†ã®ã¿ã‚’å‡ºåŠ›
 er5zero_not_eq = er5zero(~eq_1);
 er4zero_not_eq_1 = er4zero(~eq_1);
 n2 = numel(er5zero_not_eq);
-disp(sprintf('C‚ÆFORTRAN‚ÌŒë·‚ªˆÙ‚È‚é”: %d ŒÂ',n2));
-% Œë·‚ª“¯‚¶•”•ª‚Ì”z—ñ‚Ì‚İo—Í
+disp(sprintf('Cã¨FORTRANã®èª¤å·®ãŒç•°ãªã‚‹æ•°: %d å€‹',n2));
+% èª¤å·®ãŒåŒã˜éƒ¨åˆ†ã®é…åˆ—ã®ã¿å‡ºåŠ›
 er_zero_eq_1 = er5zero(eq_1);
-disp(sprintf('C‚ÆFORTRAN‚ÌŒë·‚ª“¯‚¶”: %d ŒÂ',numel(er_zero_eq)));
+disp(sprintf('Cã¨FORTRANã®èª¤å·®ãŒåŒã˜æ•°: %d å€‹',numel(er_zero_eq)));
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% (5)•½‹Ï‚Æ•ªU
+% (5*)å¹³å‡ã¨åˆ†æ•£
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-disp('(6)•ªU‚Æ•½‹Ï');
+disp('(5*)åˆ†æ•£ã¨å¹³å‡');
 
-% ˆÙ‚È‚éŒë·‚Ì”z—ñ‚Ì•½‹Ï‚Æ•ªU
+% ç•°ãªã‚‹èª¤å·®ã®é…åˆ—ã®å¹³å‡ã¨åˆ†æ•£
 var3 = var(er3zero_not_eq);
 var4 = var(er4zero_not_eq);
-disp(sprintf('MATLAB‚Ì•ªU: %.1e',var3));
-disp(sprintf('FORTRAN‚Ì•ªU: %.1e',var4));
+disp(sprintf('MATLABã®åˆ†æ•£: %.1e',var3));
+disp(sprintf('FORTRANã®åˆ†æ•£: %.1e',var4));
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% (6)ƒOƒ‰ƒt
+% (5**)å¾—ç‚¹è¨ˆç®—
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% -14.5ã‚’çœŸã‚“ä¸­ã¨ã—ã¦ãã‚Œã‚ˆã‚Šå°ã•ã„ãªã‚‰ãƒ—ãƒ©ã‚¹ã€å¤§ãã„ãªã‚‰ãƒã‚¤ãƒŠã‚¹ã¨ã—ã¦è¨ˆç®—
+disp('(5**)å¾—ç‚¹ã‚’è¡¨ç¤º');
+for i=1:n2
+    p3(i) = -14.5-log10(er3zero_not_eq(i));
+    p4(i) = -14.5-log10(er4zero_not_eq(i));
+end
+disp(sprintf('MATLABã®å¾—ç‚¹: %gç‚¹',sum(p3)));
+disp(sprintf('FORTRANã®å¾—ç‚¹: %gç‚¹',sum(p4)));
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% (6)ã‚°ãƒ©ãƒ•
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 folder_name_fig = append('matrix',string(x),'_','test',string(y),'_','fig');
 mkdir(folder_name_fig);
 
-% ƒOƒ‰ƒt
+% ã‚°ãƒ©ãƒ•
 figure(1);
 semilogy(1:double(n),er3zero,'bo',1:double(n),er4zero,'rx',1:double(n),er5zero,'gs','MarkerSize',13,'LineWidth',3,'MarkerFaceColor','w');
 grid on;
@@ -240,7 +262,7 @@ movefile('all_er.png',(folder_name_fig));
 
 figure(2);
 histogram(log10(er3zero));title('dqds (MATLAB)');axis([-17 -13 0 35]);grid on;
-%%%%% ‘Î”‚Ì–¼‘O‚Ç‚¤‚·‚é
+%%%%% å¯¾æ•°ã®åå‰ã©ã†ã™ã‚‹
 xlabel('Relative errors ()');
 ylabel('Number');
 saveas(gcf,'MATLAB_er.fig')
@@ -265,8 +287,8 @@ saveas(gcf,'C_er.png')
 movefile('C_er.fig',(folder_name_fig));
 movefile('C_er.png',(folder_name_fig));
 
-% ˆÙ‚È‚éŒë·‚Ì‚İ‚ğo—Í‚µ‚½ƒOƒ‰ƒt(MATLAB‚ÆFORTRAN)
-% ƒ^ƒCƒgƒ‹@‰½‚ÌƒqƒXƒgƒOƒ‰ƒ€H@–¼‘OŒˆ‚ß‚é@‰¡²loge k?
+% ç•°ãªã‚‹èª¤å·®ã®ã¿ã‚’å‡ºåŠ›ã—ãŸã‚°ãƒ©ãƒ•(MATLABã¨FORTRAN)
+% ã‚¿ã‚¤ãƒˆãƒ«ã€€ä½•ã®ãƒ’ã‚¹ãƒˆã‚°ãƒ©ãƒ ï¼Ÿã€€åå‰æ±ºã‚ã‚‹ã€€æ¨ªè»¸loge k?
 
 figure(5);
 semilogy(1:double(n1),er3zero_not_eq,'bo',1:double(n1),er4zero_not_eq,'rx','MarkerSize',13,'LineWidth',3,'MarkerFaceColor','w');
@@ -280,7 +302,7 @@ movefile('not_eq_er.fig',(folder_name_fig));
 movefile('not_eq_er.png',(folder_name_fig));
 
 figure(6);
-histogram(log10(er5zero_not_eq));title('dqds (C):Œë·‚ªˆÙ‚È‚é');axis([-17 -13 0 35]);grid on;
+histogram(log10(er5zero_not_eq));title('dqds (C):èª¤å·®ãŒç•°ãªã‚‹');axis([-17 -13 0 35]);grid on;
 xlabel('Relative errors ()');
 ylabel('Number');
 saveas(gcf,'not_eq_C_er.fig')
@@ -289,7 +311,7 @@ movefile('not_eq_C_er.fig',(folder_name_fig));
 movefile('not_eq_C_er.png',(folder_name_fig));
 
 figure(7);
-histogram(log10(er3zero_not_eq));title('dqds (MATLAB):Œë·‚ªˆÙ‚È‚é');axis([-17 -13 0 35]);grid on;
+histogram(log10(er3zero_not_eq));title('dqds (MATLAB):èª¤å·®ãŒç•°ãªã‚‹');axis([-17 -13 0 35]);grid on;
 xlabel('Relative errors ()');
 ylabel('Number');
 saveas(gcf,'not_eq_MATLAB_er.fig')
@@ -298,7 +320,7 @@ movefile('not_eq_MATLAB_er.fig',(folder_name_fig));
 movefile('not_eq_MATLAB_er.png',(folder_name_fig));
 
 figure(8);
-histogram(log10(er4zero_not_eq));title('dqteqr (FORTRAN):Œë·‚ªˆÙ‚È‚é');axis([-17 -13 0 35]);grid on;
+histogram(log10(er4zero_not_eq));title('dqteqr (FORTRAN):èª¤å·®ãŒç•°ãªã‚‹');axis([-17 -13 0 35]);grid on;
 xlabel('Relative errors ()');
 ylabel('Number');
 saveas(gcf,'not_eq_FORTRAN_er.fig')
@@ -306,35 +328,45 @@ saveas(gcf,'not_eq_FORTRAN_er.png')
 movefile('not_eq_FORTRAN_er.fig',(folder_name_fig));
 movefile('not_eq_FORTRAN_er.png',(folder_name_fig));
 
-
+figure(9);
+semilogy(dqds_c_times,er5zero,'bo','MarkerSize',13,'LineWidth',3,'MarkerFaceColor','w');
+grid on;
+axis([0 700 1e-17 1e-13]);
+xlabel('åå¾©å›æ•°');
+ylabel('Relative errors');
+legend('dqds( C )');
+saveas(gcf,'loop_er.fig')
+saveas(gcf,'loop_er.png')
+movefile('loop_er.fig',(folder_name_fig));
+movefile('loop_er.png',(folder_name_fig));
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% (7)ƒtƒ@ƒCƒ‹‚Ö‚Ìo—Í
+% (7)ãƒ•ã‚¡ã‚¤ãƒ«ã¸ã®å‡ºåŠ›
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 folder_name = append('matrix',string(x),'_','test',string(y));
 mkdir(folder_name);
-% ”äŠrŒ‹‰ÊiÀsŠÔA‘”½•œ‰ñ”AˆêŒÂ‚ ‚½‚è‚ÌAÅ‘å’lA•½‹ÏA•ªUA“¯‚¶”‚Æˆá‚¤”j
+% æ¯”è¼ƒçµæœï¼ˆå®Ÿè¡Œæ™‚é–“ã€ç·åå¾©å›æ•°ã€ä¸€å€‹ã‚ãŸã‚Šã®ã€æœ€å¤§å€¤ã€å¹³å‡ã€åˆ†æ•£ã€åŒã˜æ•°ã¨é•ã†æ•°ï¼‰
 file_name = append('data',string(y),'_','matrix','_',string(x),'.txt');
 fid = fopen((file_name),'w');
-% g—p‚µ‚½ƒeƒXƒgs—ñ‚Ìî•ñ
-fprintf(fid,'(1)î•ñ\r\n');
-name = append('ƒeƒXƒgs—ñ',string(y));
-fprintf(fid,'ƒeƒXƒgs—ñ–¼:%s\n',name);
+% ä½¿ç”¨ã—ãŸãƒ†ã‚¹ãƒˆè¡Œåˆ—ã®æƒ…å ±
+fprintf(fid,'(1)æƒ…å ±\r\n');
+name = append('ãƒ†ã‚¹ãƒˆè¡Œåˆ—',string(y));
+fprintf(fid,'ãƒ†ã‚¹ãƒˆè¡Œåˆ—å:%s\n',name);
 size = string(x);
-fprintf(fid,'s—ñƒTƒCƒY:%s\n',size);
+fprintf(fid,'è¡Œåˆ—ã‚µã‚¤ã‚º:%s\n',size);
 fprintf(fid,'=============================================\r\n');
-% ÀsŠÔ
-fprintf(fid,'(2)ÀsŠÔ\r\n');
+% å®Ÿè¡Œæ™‚é–“
+fprintf(fid,'(2)å®Ÿè¡Œæ™‚é–“\r\n');
 fprintf(fid,'FORTRAN_Computing_time %g [s]\r\n',time_dpteqr);
 fprintf(fid,'MATLAB_Computing_time %g [s]\r\n',time_matlab_dqds);
 fprintf(fid,'=============================================\r\n');
-% ‘”½•œ‰ñ”
-fprintf(fid,'(3)‘”½•œ‰ñ”\r\n');
+% ç·åå¾©å›æ•°
+fprintf(fid,'(3)ç·åå¾©å›æ•°\r\n');
 fprintf(fid,'MATLAB: %d\r\n',nn3);
 fprintf(fid,'=============================================\r\n');
-% Œë·•]‰¿
-fprintf(fid,'(4)Œë·•]‰¿\r\n');
+% èª¤å·®è©•ä¾¡
+fprintf(fid,'(4)èª¤å·®è©•ä¾¡\r\n');
 fprintf(fid,'=============================================\r\n');
 fprintf(fid,'\r\n');
 % MATLAB 
@@ -350,73 +382,68 @@ fprintf(fid,'=== dqds(C) \r\n');
 fprintf(fid,'Max: %.1e\r\n',er5_max);
 fprintf(fid,'Ave: %.1e\r\n',er5_ave);
 fprintf(fid,'=============================================\r\n');
-% Œë·‚ª“¯‚¶•”•ª‚Æˆá‚¤•”•ª
-fprintf(fid,'(5)Œë·‚ª“¯‚¶ŒÂ”‚Æˆá‚¤ŒÂ”\r\n');
-fprintf(fid,'Œë·‚ªˆÙ‚È‚é”: %d ŒÂ\r\n',n1);
-fprintf(fid,'Œë·‚ª“¯‚¶”: %d ŒÂ\r\n',numel(er_zero_eq));
+% èª¤å·®ãŒåŒã˜éƒ¨åˆ†ã¨é•ã†éƒ¨åˆ†
+fprintf(fid,'(5)èª¤å·®ãŒåŒã˜å€‹æ•°ã¨é•ã†å€‹æ•°\r\n');
+fprintf(fid,'èª¤å·®ãŒç•°ãªã‚‹æ•°: %d å€‹\r\n',n1);
+fprintf(fid,'èª¤å·®ãŒåŒã˜æ•°: %d å€‹\r\n',numel(er_zero_eq));
 fprintf(fid,'=============================================\r\n');
-% •ªU
-fprintf(fid,'(6)Œë·‚ªˆÙ‚È‚é•”•ª‚Ì•ªU\r\n');
-fprintf(fid,'MATLAB‚Ì•ªU: %.1e\r\n',var3);
-fprintf(fid,'FORTRAN‚Ì•ªU: %.1e\r\n',var4);
+% åˆ†æ•£
+fprintf(fid,'(6)èª¤å·®ãŒç•°ãªã‚‹éƒ¨åˆ†ã®åˆ†æ•£\r\n');
+fprintf(fid,'MATLABã®åˆ†æ•£: %.1e\r\n',var3);
+fprintf(fid,'FORTRANã®åˆ†æ•£: %.1e\r\n',var4);
+fprintf(fid,'=============================================\r\n');
+% å¾—ç‚¹
+fprintf(fid,'(7)å¾—ç‚¹\r\n');
+fprintf(fid,'MATLABã®å¾—ç‚¹: %gç‚¹\r\n',sum(p3));
+fprintf(fid,'FORTRANã®å¾—ç‚¹: %gç‚¹\r\n',sum(p4));
+fprintf(fid,'äºŒã¤ã®å¾—ç‚¹å·®: %gç‚¹\r\n',abs(sum(p3)-sum(p4)));
 fprintf(fid,'=============================================\r\n');
 
 fclose(fid);
 
-% ^’l
+% çœŸå€¤
 file_name1 = 'lambda.txt';
 fid = fopen((file_name1),'w');
-fprintf(fid,'ŒÅ—L’l(^’l)\r\n');
+fprintf(fid,'å›ºæœ‰å€¤(çœŸå€¤)\r\n');
 fprintf(fid,'%g\n',lambda);
 fclose(fid);
-% FORTRAN‚ÌŒÅ—L’l
+% FORTRANã®å›ºæœ‰å€¤
 file_name2 = 'FORTRAN_eig.txt';
 fid = fopen((file_name2),'w');
-fprintf(fid,'ŒÅ—L’l(FORTRAN)\r\n');
+fprintf(fid,'å›ºæœ‰å€¤(FORTRAN)\r\n');
 fprintf(fid,'%g\n',eig_dpteqr);
 fclose(fid);
-% MATLAB‚ÌŒÅ—L’l
+% MATLABã®å›ºæœ‰å€¤
 file_name3 = 'MATLAB_eig.txt';
 fid = fopen((file_name3),'w');
-fprintf(fid,'ŒÅ—L’l(MATLAB)\r\n');
+fprintf(fid,'å›ºæœ‰å€¤(MATLAB)\r\n');
 fprintf(fid,'%g\n',lambda3);
 fclose(fid);
-% C‚ÌŒÅ—L’l
+% Cã®å›ºæœ‰å€¤
 file_name4 = 'C_eig.txt';
 fid = fopen((file_name4),'w');
-fprintf(fid,'ŒÅ—L’l(c)\r\n');
+fprintf(fid,'å›ºæœ‰å€¤(c)\r\n');
 fprintf(fid,'%g\n',dqds_c);
 fclose(fid);
 
-% Œë·MATLAB
+% èª¤å·®MATLAB
 file_name5 = 'MATLAB_er.txt';
 fid = fopen((file_name5),'w');
-fprintf(fid,'Œë·(c)\r\n');
+fprintf(fid,'èª¤å·®(c)\r\n');
 fprintf(fid,'%g\n',er3);
 fclose(fid);
-% Œë·FORTRAN
+% èª¤å·®FORTRAN
 file_name6 = 'FORTRAN_er.txt';
 fid = fopen((file_name6),'w');
-fprintf(fid,'Œë·(FORTRAN)\r\n');
+fprintf(fid,'èª¤å·®(FORTRAN)\r\n');
 fprintf(fid,'%g\n',er4);
 fclose(fid);
-% Œë·C
+% èª¤å·®C
 file_name7 = 'C_er.txt';
 fid = fopen((file_name7),'w');
-fprintf(fid,'Œë·(c)\r\n');
+fprintf(fid,'èª¤å·®(c)\r\n');
 fprintf(fid,'%g\n',er5);
 fclose(fid);
-
-figure(9);
-semilogy(dqds_c_times,er5zero,'bo','MarkerSize',13,'LineWidth',3,'MarkerFaceColor','w');
-grid on;
-axis([0 700 1e-17 1e-13]);
-xlabel('”½•œ‰ñ”');
-ylabel('Relative errors');
-legend('dqds( C )');
-
-% ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ ‚ aaaaaaa
-
 
 movefile((folder_name_fig),(folder_name));
 movefile((file_name),(folder_name));
@@ -427,5 +454,3 @@ movefile((file_name4),(folder_name));
 movefile((file_name5),(folder_name));
 movefile((file_name6),(folder_name));
 movefile((file_name7),(folder_name));
-
-
