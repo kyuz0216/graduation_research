@@ -1,6 +1,5 @@
 # graduation_research
 graduation research B4  
-使うかわかんけど
 
 # 全体の流れ
 ## ファイルを変更した時
@@ -20,7 +19,6 @@ graduation research B4
 
 ### ブランチのルール
 ブランチ名は'自分の名前_番号'にする。  
-例：中林の5番目のブランチであれば、ブランチ名は**nakabayashi_5**とする。　　
 ### ブランチの作り方
 ```
 git checkout -b ブランチ名
@@ -51,5 +49,3 @@ masterブランチに切り替えてから
 ```
 git pull origin master
 ```
-
-
