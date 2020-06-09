@@ -1,3 +1,6 @@
+*11月までの分*  
+*最新版はOne Driveで管理*  
+
 # graduation_research
 graduation research B4  
 
